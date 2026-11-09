@@ -24,7 +24,7 @@ This repository contains the complete documentation, configuration details, and 
 
 ## Active Directory Architecture
 * **Domain FQDN:** `homelab.local`
-* **NetBIOS Name:** `HOMELAB`
+* **NetBIOS Name:** `Server-Victore`
 * **Primary Domain Controller:** `Server-local.homelab.local`
 * **Forest / Domain Functional Level:** Windows Server 2022
 
