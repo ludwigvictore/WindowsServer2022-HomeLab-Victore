@@ -18,7 +18,7 @@ This repository contains the complete documentation, configuration details, and 
 
 | Hostname | Role / Description | OS | IP Address | Subnet Mask | Preferred DNS |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `Server-local` | Domain Controller / Primary DNS | Windows Server 2022 | 192.168.1.178 *(Static)* | 255.255.255.0 | 127.0.0.1 |
+| Server-local | Domain Controller / Primary DNS | Windows Server 2022 | 192.168.1.178 *(Static)* | 255.255.255.0 | 127.0.0.1 |
 
 ---
 
