@@ -56,7 +56,7 @@ VM Name: VictoreGen2VM002
 Processor: 2 Virtual Processor
 Memory: 4096mb
 OS Installation: Used ISO for the OS installation
-
+This VDI cannot be joined to the domain Controller yet because the physical ethernet adapter settings is conflicting with vEthernet adapter IP
 
 ###Group Policy Management
 Added GPO for Account Lockout policy
