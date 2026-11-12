@@ -40,26 +40,27 @@ homelab.local
       └── OU=VM
 
 
-###Hypervisor/Hyper-V
-Added server roles for Hyper-V Manager
-Configured two VDI with following specs:
+### Hypervisor / Hyper-V
+- Installed server roles for **Hyper-V Manager**.
+- Configured two virtual machines with the following specifications:
 
-VM Name: VictoreGen2VM001
-OS: Windows11 Home
-Processor: 2 Virtual Processor
-Memory: 4096mb
-OS Installation: Used ISO for the OS installation
-This VDI cannot be joined to the Domain Controller because Windows11 has been installed
+#### 1. `VictoreGen2VM001`
+- **OS:** Windows 11 Home (Installed via ISO)
+- **Resources:** 2 Virtual Processors, 4096 MB RAM
+- **Status:** Cannot join the Active Directory domain due to Windows 11 Home edition limitations.
 
-OS: Windows11 Pro (Massgrave activation)
-VM Name: VictoreGen2VM002
-Processor: 2 Virtual Processor
-Memory: 4096mb
-OS Installation: Used ISO for the OS installation
-This VDI cannot be joined to the domain Controller yet because the physical ethernet adapter settings is conflicting with vEthernet adapter IP
+#### 2. `VictoreGen2VM002`
+- **OS:** Windows 11 Pro (Installed via ISO)
+- **Resources:** 2 Virtual Processors, 4096 MB RAM
+- **Status:** Pending domain join configuration (awaiting network and DNS binding resolution between the physical adapter and the `vEthernet` switch).
 
-###Group Policy Management
-Added GPO for Account Lockout policy
-Added GPO to remove delay Login after failed attempts
+---
 
-###Enabled RPC from services.msc on server to enable joining Virtual Machine via Powershell
+### Group Policy Management
+- **Account Lockout Policy:** Configured lockout threshold and duration parameters for failed sign-in attempts.
+- **Login Delay Removal:** Deployed configuration to eliminate login delays following failed authentication attempts.
+
+---
+
+### Remote Administration
+- Enabled **Remote Procedure Call (RPC)** services via `services.msc` on the host to support remote PowerShell session management and remote domain joins.
