@@ -39,7 +39,7 @@ homelab.local
       └── OU=Groups
       └── OU=VM
 
-###Hypervisor/Hyper-V enablement
+###Hypervisor/Hyper-V
 Added server roles for Hyper-V Manager
 Configured two VDI with following specs:
 
@@ -50,7 +50,7 @@ Memory: 4096mb
 OS Installation: Used ISO for the OS installation
 This VDI cannot be joined to the Domain Controller because Windows11 has been installed
 
-OS: Windows11 Home
+OS: Windows11 Pro (Massgrave activation)
 VM Name: VictoreGen2VM002
 Processor: 2 Virtual Processor
 Memory: 4096mb
@@ -62,4 +62,3 @@ Added GPO for Account Lockout policy
 Added GPO to remove delay Login after failed attempts
 
 ###Enabled RPC from services.msc on server to enable joining Virtual Machine via Powershell
-
