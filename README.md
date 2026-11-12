@@ -39,6 +39,7 @@ homelab.local
       └── OU=Groups
       └── OU=VM
 
+
 ###Hypervisor/Hyper-V
 Added server roles for Hyper-V Manager
 Configured two VDI with following specs:
