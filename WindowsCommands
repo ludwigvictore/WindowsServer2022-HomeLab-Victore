@@ -2,4 +2,5 @@
 Shift+F10 to open CMD
 start ms-cxh:localonly
 
-###
+###Joining VDI to Domain###
+Add-Computer -ComputerName "VictoreGen2VM002" -DomainName "homelab.local" -Credential "homelab\YourAdminUsername" -Restart
