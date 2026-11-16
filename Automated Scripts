@@ -1,0 +1,54 @@
+Automated Scripts
+
+# --- CONFIGURATION ---
+$EmailAddress = "XXXXXX@gmail.com"
+$AppPassword  = "XXXXXXXXXXXXXXXX"
+$SmtpServer   = "smtp.gmail.com"
+$SmtpPort     = 587
+# ---------------------
+
+# Wait 30 seconds to ensure network services and DNS are fully ready
+Start-Sleep -Seconds 30
+
+# Gather server details
+$Hostname = $env:COMPUTERNAME
+$BootTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+$IPAddress = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notlike "*Loopback*" -and $_.IPAddress -notlike "169.254.*" } | Select-Object -First 1).IPAddress
+
+# Gather Physical Disk Health
+try {
+    $PhysicalDisks = Get-PhysicalDisk | Select-Object FriendlyName, OperationalStatus, HealthStatus | Out-String
+} catch {
+    $PhysicalDisks = "Physical disk info unavailable."
+}
+
+# Gather Logical Drive Space
+try {
+    $LogicalDisks = Get-CimInstance Win32_LogicalDisk | Select-Object DeviceID, 
+        @{Name="Free(GB)";Expression={"{0:N1}" -f ($_.FreeSpace / 1GB)}}, 
+        @{Name="Total(GB)";Expression={"{0:N1}" -f ($_.Size / 1GB)}} | Out-String
+} catch {
+    $LogicalDisks = "Logical disk info unavailable."
+}
+
+# Build credentials and email message
+$SecurePassword = ConvertTo-SecureString $AppPassword -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential ($EmailAddress, $SecurePassword)
+
+$Subject = "[Homelab Alert] $Hostname is Online"
+$Body = @"
+Your Windows Server has started up.
+
+Server Name: $Hostname
+Local IP: $IPAddress
+Boot Time: $BootTime
+
+=== PHYSICAL DISK HEALTH ===
+$PhysicalDisks
+
+=== DRIVE VOLUMES & SPACE ===
+$LogicalDisks
+"@
+
+# Send the email
+Send-MailMessage -From $EmailAddress -To $EmailAddress -Subject $Subject -Body $Body -SmtpServer $SmtpServer -Port $SmtpPort -UseSsl -Credential $Credential
