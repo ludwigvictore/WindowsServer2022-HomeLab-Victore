@@ -64,3 +64,9 @@ homelab.local
 
 ### Remote Administration
 - Enabled **Remote Procedure Call (RPC)** services via `services.msc` on the host to support remote PowerShell session management and remote domain joins.
+
+---
+### Automated Scripting
+- Created an automated script that will send an email notification to myself when the server has been turned on and online
+
+
